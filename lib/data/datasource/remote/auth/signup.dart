@@ -12,6 +12,7 @@ class SignupData {
 
       String email,
       String phone,
+      String carteCin,
       String password,
 
       String confirmPassword,
@@ -23,6 +24,7 @@ class SignupData {
       "lastName": lastName,
       "email": email,
       "phone": phone,
+      "carteCin": carteCin,
       "password": password,
       "confirmPassword": confirmPassword,
       "userType": userType,

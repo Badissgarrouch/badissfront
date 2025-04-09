@@ -1,6 +1,7 @@
 import 'package:credit_app/conroller/auth/signup_controller.dart';
 import 'package:credit_app/core/class/statusrequest.dart';
 import 'package:credit_app/core/function/validinput.dart';
+
 import 'package:credit_app/view/widget/auth/custombutton.dart';
 import 'package:credit_app/view/widget/auth/customtextfield.dart';
 import 'package:credit_app/view/widget/auth/customtexttitle.dart';
@@ -115,7 +116,21 @@ class Signup extends StatelessWidget {
                         labeltext: '18'.tr,
                         iconData: Icons.phone_iphone,
                       ),
+                      // Après le champ phone
                       const SizedBox(height: 5),
+                      Customtextfield(
+                        isNumber: true,
+                        valid: (val) {
+                          return validInput(val!, 12, 20, "cin");
+                        },
+                        mycontroller: controller.cartecin,
+                        hinttext: '77'.tr,
+                        labeltext: '76'.tr,
+                        iconData: Icons.credit_card_outlined,
+                      ),
+                      // Après le champ phone
+                      const SizedBox(height: 5),
+
                       GetBuilder<SignUpControllerImp>(
                         builder: (controller) => Customtextfield(
                           isNumber: false,

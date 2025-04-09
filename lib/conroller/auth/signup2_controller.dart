@@ -19,6 +19,7 @@ class SignUp2ControllerImp extends SignUpController2 {
   late TextEditingController lastname;
   late TextEditingController email;
   late TextEditingController phonenumber;
+  late TextEditingController cartecin;
   late TextEditingController businessaddress;
   late TextEditingController businessname;
   late TextEditingController sectorofactivity;
@@ -59,6 +60,7 @@ class SignUp2ControllerImp extends SignUpController2 {
           lastname.text,
           email.text,
           phonenumber.text,
+          cartecin.text,
           businessaddress.text,
           businessname.text,
           sectorofactivity.text,
@@ -92,6 +94,7 @@ class SignUp2ControllerImp extends SignUpController2 {
               lastname.clear();
               email.clear();
               phonenumber.clear();
+              cartecin.clear();
               businessaddress.clear();
               businessname.clear();
               sectorofactivity.clear();
@@ -153,6 +156,7 @@ class SignUp2ControllerImp extends SignUpController2 {
     lastname = TextEditingController();
     email = TextEditingController();
     phonenumber = TextEditingController();
+    cartecin = TextEditingController();
     businessaddress=TextEditingController();
     businessname=TextEditingController();
     sectorofactivity=TextEditingController();
@@ -167,6 +171,7 @@ class SignUp2ControllerImp extends SignUpController2 {
     lastname.dispose();
     email.dispose();
     phonenumber.dispose();
+    cartecin.dispose();
     businessaddress.dispose();
     businessname.dispose();
     sectorofactivity.dispose();

@@ -19,6 +19,7 @@ class SignUpControllerImp extends SignUpController {
   late TextEditingController lastname;
   late TextEditingController email;
   late TextEditingController phonenumber;
+  late TextEditingController cartecin;
   late TextEditingController password;
   late TextEditingController confirmpassword;
   bool isShowpassword = true;
@@ -57,6 +58,7 @@ class SignUpControllerImp extends SignUpController {
           lastname.text,
           email.text,
           phonenumber.text,
+          cartecin.text,
           password.text,
           confirmpassword.text,
           userType,
@@ -138,6 +140,7 @@ class SignUpControllerImp extends SignUpController {
     lastname = TextEditingController();
     email = TextEditingController();
     phonenumber = TextEditingController();
+    cartecin = TextEditingController();
     password = TextEditingController();
     confirmpassword = TextEditingController();
     super.onInit();
@@ -149,6 +152,7 @@ class SignUpControllerImp extends SignUpController {
     lastname.dispose();
     email.dispose();
     phonenumber.dispose();
+    cartecin.dispose();
     password.dispose();
     confirmpassword.dispose();
     super.dispose();

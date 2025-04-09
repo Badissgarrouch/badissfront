@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       locale: controller.language,
       initialBinding: InitialBindings(),
       theme: ThemeData(primarySwatch: Colors.blue),
-      home:  Languages(),
+      home: Languages(),
         getPages: [
         GetPage(name: AppRoute.onBoarding, page: () =>  OnBoarding()),
         GetPage(name: AppRoute.languages, page: () =>  Languages()),

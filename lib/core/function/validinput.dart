@@ -16,6 +16,11 @@ validInput(String val,int min,int max,String type){
       return "51".tr;
     }
   }
+  if (type=="cin"){
+    if(!GetUtils.isNum(val)){
+      return "78".tr;
+    }
+  }
 
 
 

@@ -119,6 +119,17 @@ class Signup2 extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Customtextfield(
+                        isNumber: true,
+                        valid: (val) {
+                          return validInput(val!, 12, 20, "cin");
+                        },
+                        mycontroller: controller.cartecin,
+                        hinttext: '77'.tr,
+                        labeltext: '76'.tr,
+                        iconData: Icons.credit_card_outlined,
+                      ),
+                      const SizedBox(height: 5),
+                      Customtextfield(
                         isNumber: false,
                         valid: (val) {
                           return validInput(val!, 5, 25, "address");

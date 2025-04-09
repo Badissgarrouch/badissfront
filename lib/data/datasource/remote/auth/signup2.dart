@@ -12,6 +12,7 @@ class Signup2Data {
 
       String email,
       String phone,
+      String carteCin,
       String businessAddress,
       String businessName,
       String sectorOfActivity,
@@ -26,6 +27,7 @@ class Signup2Data {
       "lastName": lastName,
       "email": email,
       "phone": phone,
+      "carteCin": carteCin,
       "businessAddress":businessAddress,
       "businessName":businessName,
       "sectorOfActivity":sectorOfActivity,
