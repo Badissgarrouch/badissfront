@@ -3,6 +3,7 @@ import 'package:credit_app/core/function/handingdatacontroller.dart';
 import 'package:credit_app/data/datasource/remote/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage_pro/get_storage_pro.dart';
 
 import '../../core/constant/routes.dart';
 
@@ -31,7 +32,7 @@ class SignUpControllerImp extends SignUpController {
     isShowpassword = isShowpassword == true ? false : true;
     update();
   }
-
+  final box = GetStorage();
   @override
   void signUp() async {
     if (password.text != confirmpassword.text) {
@@ -70,6 +71,15 @@ class SignUpControllerImp extends SignUpController {
 
         if (statusRequest == StatusRequest.success) {
           if (response['status'] == "success") {
+            String userEmail = email.text;
+
+            await box.write('${userEmail}_firstName', firstname.text);
+            await box.write('${userEmail}_lastName', lastname.text);
+            await box.write('${userEmail}_email', email.text);
+            await box.write('${userEmail}_phone', phonenumber.text);
+
+            // Stocke aussi l'email courant pour savoir quel compte est connecté
+            await box.write('current_user', userEmail);
             Get.offNamed(AppRoute.verifyCodesignup, arguments: {"email": email.text});
           } else {
             // Vérifie si l'email est déjà utilisé

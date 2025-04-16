@@ -43,6 +43,7 @@ dependencies:
   dartz: ^0.10.1
   image_picker: ^1.1.2
   intl: ^0.20.2
+  get_storage_pro: ^0.1.8
 
 dev_dependencies:
   flutter_test:

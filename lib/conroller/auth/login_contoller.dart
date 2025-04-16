@@ -4,6 +4,7 @@ import 'package:credit_app/data/datasource/remote/auth/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage_pro/get_storage_pro.dart' ;
 
 import '../../core/constant/routes.dart';
 
@@ -19,6 +20,7 @@ class LoginControllerImp extends LoginController {
   late TextEditingController password;
   bool isshowpassword = true;
   StatusRequest? statusRequest = StatusRequest.none;
+  final box = GetStorage();
 
   @override
   void showPassword() {
@@ -39,8 +41,17 @@ class LoginControllerImp extends LoginController {
 
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
+          final token = response['data']['token'];
+          final userData = response['data']['user'];
+
+          await box.write('current_user', email.text);
+          await box.write('token', token);
+          await box.write('${email.text}_firstName', userData['firstName']);
+          await box.write('${email.text}_lastName', userData['lastName']);
+
+
           final userType = int.tryParse(response['data']['user']['userType']?.toString() ?? '') ?? -1;
-          Get.offNamed(userType == 1 ? AppRoute.clientHome : AppRoute.commercantHome);
+          Get.offNamed(userType == 1 ? AppRoute.homeScreen : AppRoute.homeScreenCommercant);
         } else {
           _handleLoginError(response);
         }

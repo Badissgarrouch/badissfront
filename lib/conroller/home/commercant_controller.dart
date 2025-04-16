@@ -1,6 +1,7 @@
 import 'package:credit_app/core/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage_pro/get_storage_pro.dart';
 
 abstract class CommercantController extends GetxController {
   void navigateToProducts();
@@ -11,6 +12,24 @@ abstract class CommercantController extends GetxController {
 }
 
 class CommercantControllerImp extends CommercantController {
+
+
+  RxString firstName = ''.obs;
+  RxString lastName = ''.obs;
+  final box = GetStorage();
+
+  @override
+  void onInit() {
+    loadUserData();
+    super.onInit();
+  }
+  void loadUserData() {
+    String userEmail = box.read('current_user') ?? '';
+
+    firstName.value = box.read('${userEmail}_firstName') ?? '';
+    lastName.value = box.read('${userEmail}_lastName') ?? '';
+    update(); // Important pour notifier les changements
+  }
   @override
   void navigateToProducts() {
 

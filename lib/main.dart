@@ -12,10 +12,13 @@ import 'package:credit_app/view/screen/auth/verifycode.dart';
 import 'package:credit_app/view/screen/auth/verifycodesignup.dart';
 import 'package:credit_app/view/screen/home/clienthome.dart';
 import 'package:credit_app/view/screen/home/commercanthome.dart';
+import 'package:credit_app/view/screen/home/homescreen.dart';
+import 'package:credit_app/view/screen/home/homescreencommercant.dart';
 import 'package:credit_app/view/screen/languages.dart';
 import 'package:credit_app/view/screen/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage_pro/get_storage_pro.dart';
 
 import 'bindings/initialbindings.dart';
 import 'core/localization/translation.dart';
@@ -23,7 +26,8 @@ import 'view/screen/auth/forgotpassword.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initialServices(); // Assurez-vous que cette fonction existe
+  await initialServices();
+  await GetStorage.init();// Assurez-vous que cette fonction existe
   runApp(const MyApp());
 }
 
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
       locale: controller.language,
       initialBinding: InitialBindings(),
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: Languages(),
+      home:Languages(),
         getPages: [
         GetPage(name: AppRoute.onBoarding, page: () =>  OnBoarding()),
         GetPage(name: AppRoute.languages, page: () =>  Languages()),
@@ -56,8 +60,8 @@ class MyApp extends StatelessWidget {
 
           GetPage(name: AppRoute.successPage, page: () =>  Successpage()),
           GetPage(name: AppRoute.verifyCodesignup, page: () =>  VerifycodeSignup()),
-          GetPage(name: AppRoute.clientHome, page: () =>  Clienthome()),
-          GetPage(name: AppRoute.commercantHome, page: () =>  Commercanthome()),
+          GetPage(name: AppRoute.homeScreen, page: () => Homescreen()),
+          GetPage(name: AppRoute.homeScreenCommercant, page: () =>  Homescreencommercant()),
         ],
 
 

@@ -13,4 +13,7 @@ class AppRoute{
   static const String verifyCodesignup="/verifycodesignup";
   static const String clientHome="/clienthome";
   static const String commercantHome="/commercanthome";
+  static const String homeScreen="/homescreen";
+  static const String homeScreenCommercant="/homescreencommercant";
+
 }
