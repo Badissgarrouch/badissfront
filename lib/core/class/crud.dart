@@ -50,6 +50,7 @@ class Crud {
   Future<Either<StatusRequest, Map>> getData(String url,
       {Map<String, String>? headers}) async {
     try {
+
       if (!await checkInternet()) return Left(StatusRequest.offlinefailure);
 
       print('🌐 GET Request to: $url');

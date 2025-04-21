@@ -13,6 +13,9 @@ import 'package:credit_app/view/screen/home/clienthome.dart';
 import 'package:credit_app/view/screen/home/commercanthome.dart';
 import 'package:credit_app/view/screen/home/homescreen.dart';
 import 'package:credit_app/view/screen/home/homescreencommercant.dart';
+import 'package:credit_app/view/screen/invitation/respondinvitation.dart';
+import 'package:credit_app/view/screen/invitation/sendinvitation.dart';
+import 'package:credit_app/view/screen/invitation/sendinvittoclient.dart';
 import 'package:credit_app/view/screen/languages.dart';
 import 'package:credit_app/view/screen/onboarding.dart';
 import 'package:flutter/material.dart';
@@ -33,4 +36,7 @@ Map<String,Widget Function(BuildContext)>routes={
   AppRoute.commercantHome:(context)=> Commercanthome(),
   AppRoute.homeScreen:(context)=> Homescreen(),
   AppRoute.homeScreenCommercant:(context)=> Homescreencommercant(),
+  AppRoute.sendInvitation:(context)=> SendInvitation(),
+  AppRoute.sendclientInvitation:(context)=> SendClientInvitation(),
+  AppRoute.respondInvitation:(context)=> RespondInvitation(),
 };

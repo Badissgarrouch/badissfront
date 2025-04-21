@@ -83,6 +83,9 @@ class SignUp2ControllerImp extends SignUpController2 {
             await box.write('${userEmail}_lastName', lastname.text);
             await box.write('${userEmail}_email', email.text);
             await box.write('${userEmail}_phone', phonenumber.text);
+            await box.write('${userEmail}_businessName', businessname.text);
+            await box.write('${userEmail}_businessAddress',businessaddress.text);
+            await box.write('${userEmail}_sectorofactivity',sectorofactivity.text);
 
             // Stocke aussi l'email courant pour savoir quel compte est connecté
             await box.write('current_user', userEmail);

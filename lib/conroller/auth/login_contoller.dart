@@ -41,13 +41,17 @@ class LoginControllerImp extends LoginController {
 
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-          final token = response['data']['token'];
+
+          final token = response['token'];
           final userData = response['data']['user'];
+
+
 
           await box.write('current_user', email.text);
           await box.write('token', token);
           await box.write('${email.text}_firstName', userData['firstName']);
           await box.write('${email.text}_lastName', userData['lastName']);
+          await box.write('userId', userData['id']);
 
 
           final userType = int.tryParse(response['data']['user']['userType']?.toString() ?? '') ?? -1;

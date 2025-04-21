@@ -15,5 +15,8 @@ class AppRoute{
   static const String commercantHome="/commercanthome";
   static const String homeScreen="/homescreen";
   static const String homeScreenCommercant="/homescreencommercant";
+  static const String sendInvitation="/sendinvitation";
+  static const String sendclientInvitation="/sendclientinvitation";
+  static const String respondInvitation="/respondinvitation";
 
 }

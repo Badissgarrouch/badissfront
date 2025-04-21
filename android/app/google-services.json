@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778756073006",
+    "project_id": "creditappli-d0155",
+    "storage_bucket": "creditappli-d0155.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778756073006:android:a876fc7eb98e11dc82e1bf",
+        "android_client_info": {
+          "package_name": "com.example.credit_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7vmFXnKuYzlAZsIO6vu6JJXjXvfFlO_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

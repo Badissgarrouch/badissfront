@@ -5,7 +5,8 @@ import 'package:get_storage_pro/get_storage_pro.dart';
 
 import '../../core/class/crud.dart';
 import '../../core/class/statusrequest.dart';
-import '../../data/model/user_model.dart';
+import '../../data/datasource/remote/home/search.dart';
+
 import '../../linkapi.dart';
 
 abstract class ClientController extends GetxController {
@@ -17,7 +18,7 @@ abstract class ClientController extends GetxController {
 
 class ClientControllerImp extends ClientController {
   final Crud crud = Crud();
-  RxList<UserModel> searchResults = <UserModel>[].obs;
+  RxList<SearchModel> searchResults = <SearchModel>[].obs;
   Rx<StatusRequest> searchStatus = StatusRequest.none.obs;
   RxString firstName = ''.obs;
   RxString lastName = ''.obs;
@@ -38,21 +39,18 @@ class ClientControllerImp extends ClientController {
   }
 
   Future<void> searchUsers(String query) async {
-    // 1. Vérification initiale
-    if (query.isEmpty || query.length < 2) {
+    if (query.isEmpty || query.length < 3) {
       searchResults.clear();
       searchStatus.value = StatusRequest.none;
       return;
     }
 
-    // 2. Récupération du token avec vérification renforcée
     final token = await _getValidToken();
     if (token == null) {
       await _forceLogout();
       return;
     }
 
-    // 3. Exécution de la recherche
     searchStatus.value = StatusRequest.loading;
     update();
 
@@ -73,44 +71,47 @@ class ClientControllerImp extends ClientController {
   }
 
   Future<String?> _getValidToken() async {
-    var token = box.read('token');
+    var token = await box.read('token');
     if (token != null) return token;
 
-    print('⚠️ Attempting token recovery...');
-    await Future.delayed(Duration(milliseconds: 100)); // Pause pour le stockage
-
+    await Future.delayed(Duration(milliseconds: 100));
     token = box.read('token');
-    if (token != null) {
-      print('🔑 Token recovered');
-      return token;
-    }
-
-    print('❌ Token recovery failed');
-    return null;
+    return token;
   }
 
   Future<void> _forceLogout() async {
     await box.erase();
-    Get.offAllNamed(AppRoute.login);
     Get.snackbar('Session Expired', 'Please login again');
+    navigateToLogin();
   }
+
   void _handleSearchError(StatusRequest failure) {
-    // Gestion détaillée des erreurs
+    searchStatus.value = StatusRequest.fail;
+    Get.snackbar("Erreur", "Une erreur est survenue lors de la recherche.");
   }
 
   void _handleSearchResponse(Map response) {
-    // Gestion de la réponse
+    if (response['data'] != null && response['data']['users'] != null) {
+      final List<dynamic> usersList = response['data']['users'];
+      searchResults.value = usersList
+          .map((e) => SearchModel.fromJson(e))
+          .toList();
+      searchStatus.value = StatusRequest.success;
+    } else {
+      Get.snackbar('Aucun résultat', 'Aucun utilisateur trouvé.');
+      searchStatus.value = StatusRequest.none;
+    }
+    update();
   }
-
 
   @override
   void navigateToProducts() {
-    // Implémentez votre navigation vers les produits
+
   }
 
   @override
   void navigateToMerchants() {
-    // Implémentez votre navigation vers les commerçants
+
   }
 
   @override
@@ -120,6 +121,7 @@ class ClientControllerImp extends ClientController {
 
   @override
   void showLogoutConfirmation() {
+
     Get.dialog(
       AlertDialog(
         icon: const Icon(Icons.logout, color: Colors.blue, size: 40),

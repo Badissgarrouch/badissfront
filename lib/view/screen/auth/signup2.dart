@@ -78,7 +78,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 3, 20, "username");
+                          return validInput(val!,3,20,"username");
                         },
                         mycontroller: controller.firstname,
                         hinttext: '15'.tr,
@@ -88,7 +88,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 3, 20, "username");
+                          return validInput(val!,3,20,"username");
                         },
                         mycontroller: controller.lastname,
                         hinttext: '101'.tr,
@@ -99,7 +99,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 10, 40, "email");
+                          return validInput(val!,10, 40,"email");
                         },
                         mycontroller: controller.email,
                         hinttext: '17'.tr,
@@ -110,7 +110,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: true,
                         valid: (val) {
-                          return validInput(val!, 8, 20, "phone");
+                          return validInput(val!,8,20,"phone");
                         },
                         mycontroller: controller.phonenumber,
                         hinttext: '19'.tr,
@@ -121,7 +121,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: true,
                         valid: (val) {
-                          return validInput(val!, 12, 20, "cin");
+                          return validInput(val!,8,20,"cin");
                         },
                         mycontroller: controller.cartecin,
                         hinttext: '77'.tr,
@@ -132,7 +132,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 5, 25, "address");
+                          return validInput(val!,5,25,"address");
                         },
                         mycontroller: controller.businessaddress,
                         hinttext: '28'.tr,
@@ -143,7 +143,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 2, 15, "name");
+                          return validInput(val!,2,15, "name");
                         },
                         mycontroller: controller.businessname,
                         hinttext: '30'.tr,
@@ -154,7 +154,7 @@ class Signup2 extends StatelessWidget {
                       Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 2, 20, "activity");
+                          return validInput(val!,2,20,"activity");
                         },
                         mycontroller: controller.sectorofactivity,
                         hinttext: '32'.tr,
@@ -165,7 +165,7 @@ class Signup2 extends StatelessWidget {
                       GetBuilder<SignUp2ControllerImp>(builder: (controller) => Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 8, 30, "password");
+                          return validInput(val!,8,30,"password");
                         },
                         onTapIcon: () {
                           controller.showPassword();
@@ -180,7 +180,7 @@ class Signup2 extends StatelessWidget {
                       GetBuilder<SignUp2ControllerImp>(builder: (controller) => Customtextfield(
                         isNumber: false,
                         valid: (val) {
-                          return validInput(val!, 8, 30, "password");
+                          return validInput(val!,8,30,"password");
                         },
                         onTapIcon: () {
                           controller.showPassword();

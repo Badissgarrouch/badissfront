@@ -11,7 +11,8 @@ class Customappbar extends StatefulWidget {
     Key? key,
     required this.titleappbar,
     this.onPressedIcon,
-    this.onSearchChanged, // Nouveau paramètre
+    this.onSearchChanged,
+    // Nouveau paramètre
   }) : super(key: key);
 
   @override
