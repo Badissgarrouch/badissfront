@@ -14,7 +14,7 @@ class OnBoarding extends StatelessWidget {
           children: [
             const SizedBox(height: 30),
              Text(textAlign: TextAlign.center,
-              '6'.tr,
+              'Access your space'.tr,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
@@ -26,14 +26,14 @@ class OnBoarding extends StatelessWidget {
               width: 300,
               height: 350,
               fit: BoxFit.contain,
-              repeat: true, // L'animation se répète en boucle
-              animate: true, // L'animation joue automatiquement
+              repeat: true,
+              animate: true,
             ),
             const SizedBox(height: 20),
              Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Text(
-                "7".tr,
+                "Start now by selecting your profile".tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16),
               ),
@@ -55,7 +55,7 @@ class OnBoarding extends StatelessWidget {
                         Get.toNamed(AppRoute.signUp);
                       },
                       child:  Text(
-                        '8'.tr,
+                        'Customer'.tr,
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                     ),
@@ -73,7 +73,7 @@ class OnBoarding extends StatelessWidget {
                         Get.toNamed(AppRoute.signUp2);
                       },
                       child: Text(
-                        '9'.tr,
+                        'Trader'.tr,
                         style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                     ),
@@ -88,10 +88,10 @@ class OnBoarding extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: TextButton(
                   onPressed: () {
-                    Get.toNamed(AppRoute.languages); // 🔥 Aller à la page Languages
+                    Get.toNamed(AppRoute.languages);
                   },
                   child:  Text(
-                    "10".tr,
+                    "Back".tr,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

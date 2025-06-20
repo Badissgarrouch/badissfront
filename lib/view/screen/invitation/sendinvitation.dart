@@ -1,9 +1,10 @@
 import 'package:credit_app/conroller/invitation/send_controller.dart';
+import 'package:credit_app/view/widget/invitation/respond/hearder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/class/statusrequest.dart';
 import '../../../data/datasource/remote/home/search.dart';
-import '../../widget/invitation/send/Header2.dart';
 import '../../widget/invitation/send/confimdialog.dart';
 import '../../widget/invitation/send/snedactions.dart';
 import '../../widget/invitation/send/profile_card.dart';
@@ -22,19 +23,20 @@ class SendInvitation extends StatelessWidget {
     }
 
     return Scaffold(
-      body: SafeArea(
-        child: Obx(() {
-          final user = controller.selectedUser.value;
-          if (user == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      backgroundColor: const Color(0xFFFAFAFA),
+      body: Obx(() {
+        final user = controller.selectedUser.value;
+        if (user == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-          final initials = '${user.firstName[0]}${user.lastName[0]}'.toUpperCase();
+        final initials = '${user.firstName[0]}${user.lastName[0]}'.toUpperCase();
 
-          return Column(
-            children: [
-              const Header2(),
-              Expanded(
+        return Column(
+          children: [
+            Header(text: 'Profile details'.tr),
+            Expanded(
+              child: SafeArea(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(24),
                   child: Column(
@@ -42,14 +44,14 @@ class SendInvitation extends StatelessWidget {
                       SendCardProfile(
                         initials: initials,
                         name: '${user.firstName} ${user.lastName}',
-                        businessName: user.businessName ?? 'Non spécifié',
+                        businessName: user.businessName ?? 'Not specified'.tr,
                       ),
                       const SizedBox(height: 32),
                       SendDetailsCard(
                         email: user.email,
-                        phone: user.phone ?? 'Non spécifié',
-                        businessAddress: user.businessAddress ?? 'Non spécifié',
-                        sectorOfActivity: user.sectorOfActivity ?? 'Non spécifié',
+                        phone: user.phone ?? 'Not specified'.tr,
+                        businessAddress: user.businessAddress ?? 'Not specified'.tr,
+                        sectorOfActivity: user.sectorOfActivity ?? 'Not specified'.tr,
                       ),
                       const SizedBox(height: 40),
                       SendActions(
@@ -68,12 +70,10 @@ class SendInvitation extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          );
-        }),
-      ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
-
-

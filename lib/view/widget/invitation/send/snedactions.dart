@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-import '../../../../conroller/invitation/send_controller.dart';
 class SendActions extends StatelessWidget {
   final VoidCallback onSend;
   final VoidCallback onCancel;
@@ -23,33 +21,56 @@ class SendActions extends StatelessWidget {
       children: [
         if (isLoading)
           const CircularProgressIndicator()
-        else if (hasSentInvitation)
-          ElevatedButton.icon(
-            onPressed: onCancel,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            icon: const Icon(Icons.delete),
-            label: const Text("Supprimer l'invitation"),
-          )
         else
-          ElevatedButton.icon(
-            onPressed: onSend,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blueAccent,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 20),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: hasSentInvitation
+                    ? [Color(0xFFEF9A9A), Color(0xFFFFEBEE)]
+                    : [Color(0xFF90CAF9), Color(0xFFE3F2FD)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: Colors.black,
+                width: 1,
               ),
             ),
-            icon: const Icon(Icons.send),
-            label: const Text("Envoyer l'invitation"),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: hasSentInvitation ? onCancel : onSend,
+                borderRadius: BorderRadius.circular(10),
+                splashColor: Colors.grey.withOpacity(0.2),
+                highlightColor: Colors.white.withOpacity(0.1),
+                child: Container(
+                  width: double.infinity,
+                  height: 45,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        hasSentInvitation ? Icons.delete : Icons.send,
+                        color: Colors.black,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        hasSentInvitation
+                            ? "Delete invitation".tr
+                            : "Send invitation".tr,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
       ],
     );

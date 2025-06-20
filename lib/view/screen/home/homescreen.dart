@@ -12,14 +12,6 @@ class Homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeScreenControllerImp());
     return GetBuilder<HomeScreenControllerImp>(builder: (controller) => Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.settings),
-        backgroundColor: Colors.lightBlue,
-        foregroundColor: Colors.black, // Couleur bleue
-        elevation: 4, // Ombre légère
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -34,7 +26,7 @@ class Homescreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Custombuttonappbar(
-                    textbutton: 'Home',
+                    textbutton: 'Home'.tr,
                     icondata: Icons.home,
                     onPressed: () {
                       controller.changePage(0);
@@ -43,7 +35,7 @@ class Homescreen extends StatelessWidget {
 
                   ),
                   Custombuttonappbar(
-                    textbutton: 'Profile',
+                    textbutton: 'Profile'.tr,
                     icondata: Icons.person_2_rounded,
                     onPressed: () {
                       controller.changePage(1);
@@ -59,8 +51,8 @@ class Homescreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Custombuttonappbar(
-                    textbutton: 'Setting',
-                    icondata: Icons.settings,
+                    textbutton: 'Offer'.tr,
+                    icondata: Icons.local_offer,
                     onPressed: () {
                       controller.changePage(2);
                     },
@@ -68,8 +60,8 @@ class Homescreen extends StatelessWidget {
 
                   ),
                   Custombuttonappbar(
-                    textbutton: 'favor',
-                    icondata: Icons.monitor_heart,
+                    textbutton: 'emojie',
+                    icondata: Icons.emoji_emotions,
                     onPressed: () {
                       controller.changePage(3);
                     },

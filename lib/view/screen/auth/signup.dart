@@ -24,7 +24,7 @@ class Signup extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         elevation: 0.0,
         title: Text(
-          '11'.tr,
+          'Sign Up'.tr,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -60,7 +60,7 @@ class Signup extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Customtexttitle(text: "12".tr),
+                      Customtexttitle(text: "Customers Registration".tr),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.28,
                         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -71,7 +71,7 @@ class Signup extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Customtextbody(text: "13".tr),
+                      Customtextbody(text: "Fill out the form with your information to create your account".tr),
                       const SizedBox(height: 20),
                       Customtextfield(
                         isNumber: false,
@@ -79,8 +79,8 @@ class Signup extends StatelessWidget {
                           return validInput(val!,3,20,"username");
                         },
                         mycontroller: controller.firstname,
-                        hinttext: '15'.tr,
-                        labeltext: '14'.tr,
+                        hinttext: 'Enter Your First Name'.tr,
+                        labeltext: 'First Name'.tr,
                         iconData: Icons.person,
                       ),
                       const SizedBox(height: 5),
@@ -90,8 +90,8 @@ class Signup extends StatelessWidget {
                           return validInput(val!,3,20,"username");
                         },
                         mycontroller: controller.lastname,
-                        hinttext: '101'.tr,
-                        labeltext: '100'.tr,
+                        hinttext: 'Enter Your Last Name'.tr,
+                        labeltext: 'Last Name'.tr,
                         iconData: Icons.person_outline,
                       ),
                       const SizedBox(height: 5),
@@ -101,8 +101,8 @@ class Signup extends StatelessWidget {
                           return validInput(val!,10,40,"email");
                         },
                         mycontroller: controller.email,
-                        hinttext: '17'.tr,
-                        labeltext: '16'.tr,
+                        hinttext: 'Enter Your Email'.tr,
+                        labeltext: 'Email'.tr,
                         iconData: Icons.email_outlined,
                       ),
                       const SizedBox(height: 5),
@@ -112,8 +112,8 @@ class Signup extends StatelessWidget {
                           return validInput(val!,8,20,"phone");
                         },
                         mycontroller: controller.phonenumber,
-                        hinttext: '19'.tr,
-                        labeltext: '18'.tr,
+                        hinttext: 'Enter Your Phone Number'.tr,
+                        labeltext: 'Phone Number'.tr,
                         iconData: Icons.phone_iphone,
                       ),
                       // Après le champ phone
@@ -124,8 +124,8 @@ class Signup extends StatelessWidget {
                           return validInput(val!,8,13,"cin");
                         },
                         mycontroller: controller.cartecin,
-                        hinttext: '77'.tr,
-                        labeltext: '76'.tr,
+                        hinttext: 'Enter your CIN number'.tr,
+                        labeltext: 'CIN'.tr,
                         iconData: Icons.credit_card_outlined,
                       ),
                       // Après le champ phone
@@ -142,8 +142,8 @@ class Signup extends StatelessWidget {
                           },
                           obscureText: controller.isShowpassword,
                           mycontroller: controller.password,
-                          hinttext: '21'.tr,
-                          labeltext: '20'.tr,
+                          hinttext: 'Enter Your Password'.tr,
+                          labeltext: 'Password'.tr,
                           iconData: Icons.lock_outline,
                         ),
                       ),
@@ -159,22 +159,22 @@ class Signup extends StatelessWidget {
                           },
                           obscureText: controller.isShowpassword,
                           mycontroller: controller.confirmpassword,
-                          hinttext: '23'.tr,
-                          labeltext: '22'.tr,
+                          hinttext: 'Enter to confirm Password'.tr,
+                          labeltext: 'Confirm Password'.tr,
                           iconData: Icons.key,
                         ),
                       ),
                       const SizedBox(height: 7),
                       Custombutton(
-                        text: '11'.tr,
+                        text: 'Sign Up'.tr,
                         onPressed: () {
                           controller.signUp();
                         },
                       ),
                       const SizedBox(height: 10),
                       Textsignup(
-                        textone: "24".tr,
-                        texttwo: "25".tr,
+                        textone: "Already have an account?".tr,
+                        texttwo: "Sign In".tr,
                         onTap: () {
                           controller.goToSignIn();
                         },

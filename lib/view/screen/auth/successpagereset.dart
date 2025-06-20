@@ -12,10 +12,10 @@ class SuccesspageReset extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white, // Bleu plus doux 🌊
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2), // Ombre légère
+              color: Colors.black.withOpacity(0.2),
               offset: Offset(0, 4),
               blurRadius: 10,
               spreadRadius: 2,
@@ -45,9 +45,8 @@ class SuccesspageReset extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // ✅ Grand texte "Success" en gris clair
                     Text(
-                      '71'.tr,
+                      'SUCCESS'.tr,
                       style: TextStyle(
                         fontSize: 36, // Très grand texte
                         fontWeight: FontWeight.bold,
@@ -68,7 +67,7 @@ class SuccesspageReset extends StatelessWidget {
 
                     // ✅ Texte "Congratulations"
                     Text(
-                      '72'.tr,
+                      'Congratulations!'.tr,
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
@@ -77,10 +76,8 @@ class SuccesspageReset extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 8),
-
-                    // ✅ Texte "Successfully registered"
                     Text(
-                      '75'.tr,
+                      'password is changed'.tr,
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -103,7 +100,7 @@ class SuccesspageReset extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        '74'.tr,
+                        'Go to Sign In'.tr,
                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
                       ),
                     ),

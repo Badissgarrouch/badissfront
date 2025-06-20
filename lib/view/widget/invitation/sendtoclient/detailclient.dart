@@ -1,5 +1,6 @@
 import 'package:credit_app/view/widget/invitation/respond/detail_row.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class SendDetailClient extends StatelessWidget {
@@ -34,13 +35,13 @@ class SendDetailClient extends StatelessWidget {
         children: [
            DetailRow(
             icon: Icons.email,
-            title: "Email",
+            title: "Email".tr,
             value: email,
           ),
           const Divider(height: 32),
            DetailRow(
             icon: Icons.phone,
-            title: "Téléphone",
+            title: "Phone".tr,
             value: phone,
 
 

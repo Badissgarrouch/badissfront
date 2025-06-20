@@ -54,7 +54,7 @@ class Forgotpassword extends StatelessWidget {
                     const SizedBox(height: 30),
 
                     // Titre
-                    Customtexttitle(text: "37".tr),
+                    Customtexttitle(text: "Check Email".tr),
                     const SizedBox(height: 15),
 
                     // Texte descriptif
@@ -62,7 +62,7 @@ class Forgotpassword extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Align(
                         alignment: Alignment.center,
-                        child: Customtextbody(text: "38".tr),
+                        child: Customtextbody(text: "Please enter your email to receive a verification code".tr),
                       ),
                     ),
 
@@ -77,8 +77,8 @@ class Forgotpassword extends StatelessWidget {
                           return validInput(val!, 5, 100, "email");
                         },
                         mycontroller: controller.email,
-                        hinttext: '17'.tr,
-                        labeltext: '16'.tr,
+                        hinttext: 'Enter Your Email'.tr,
+                        labeltext: 'Email'.tr,
                         iconData: Icons.email_outlined,
                       ),
                     ),
@@ -89,7 +89,7 @@ class Forgotpassword extends StatelessWidget {
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 400),
                       child: Custombutton(
-                        text: '39'.tr,
+                        text: 'Check'.tr,
                         onPressed: () {
                           controller.checkEmail();
                         },

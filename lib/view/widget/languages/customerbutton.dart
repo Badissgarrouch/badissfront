@@ -15,11 +15,11 @@ class CustomerButton extends StatelessWidget {
     return SizedBox(
       width: 200,
       child: MaterialButton(
-        padding: const EdgeInsets.symmetric(vertical: 12), // Espacement ajusté
+        padding: const EdgeInsets.symmetric(vertical: 12),
         color: Colors.lightBlueAccent,
         textColor: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // Coins arrondis
+          borderRadius: BorderRadius.circular(12),
         ),
         onPressed: onPressed,
         child: Text(

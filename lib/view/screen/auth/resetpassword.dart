@@ -19,7 +19,6 @@ class Resetpassword extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // 1. Animation Lottie (inchangée)
             SizedBox(
               height: 300,
               child: Lottie.asset(
@@ -28,11 +27,6 @@ class Resetpassword extends StatelessWidget {
                 width: double.infinity,
               ),
             ),
-
-            // 2. Titre déplacé ICI (juste après la Lottie)
-            // Espacement réduit
-
-            // 3. Le reste du code EXACTEMENT comme avant
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -40,9 +34,9 @@ class Resetpassword extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Customtexttitle(text: "44".tr), // "New Password"
+                  Customtexttitle(text: "New Password".tr), // "New Password"
                   const SizedBox(height: 10),
-                  Customtextbody(text: "45".tr),
+                  Customtextbody(text: "Please enter your new password to continue".tr),
                   const SizedBox(height: 10),
 
                   GetBuilder<ResetPasswordControllerImp>(builder: (controller)=>Customtextfield(
@@ -51,8 +45,8 @@ class Resetpassword extends StatelessWidget {
                     onTapIcon: (){ controller.showPassword(); },
                     mycontroller: controller.newPasswordController,
                     obscureText: controller.isShowPassword,
-                    hinttext: '21'.tr,
-                    labeltext: '20'.tr,
+                    hinttext: 'Enter Your Password'.tr,
+                    labeltext: 'Password'.tr,
                     iconData: Icons.key_off,
                   )),
 
@@ -65,15 +59,15 @@ class Resetpassword extends StatelessWidget {
 
                     mycontroller: controller.confirmPasswordController,
                     obscureText: controller.isShowPassword,
-                    hinttext: '46'.tr,
-                    labeltext: '47'.tr,
+                    hinttext: 'Retry your Password'.tr,
+                    labeltext: 'Retry Password'.tr,
                     iconData: Icons.key,
                   )),
 
                   const SizedBox(height: 10),
 
                   GetBuilder<ResetPasswordControllerImp>(builder: (controller)=>Custombutton(
-                    text: '48'.tr,
+                    text: 'Save'.tr,
                     onPressed: () { controller.resetPassword(); },
                   )),
                 ],

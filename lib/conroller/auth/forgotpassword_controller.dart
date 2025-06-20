@@ -54,7 +54,7 @@ class ForgotPasswordControllerImp extends ForgotpasswordController {
     if (message.contains('not found') || message.contains('introuvable')) {
       Get.defaultDialog(
         title: "Email introuvable".tr,
-        middleText: "67".tr,
+        middleText: "No account is associated with this email".tr,
       );
     } else {
       Get.defaultDialog(
@@ -67,12 +67,12 @@ class ForgotPasswordControllerImp extends ForgotpasswordController {
 
   void _handleStatusRequestError() {
     String message;
-    String title = "60".tr;
+    String title = "⚠ Attention".tr;
 
     if (statusRequest == StatusRequest.offlinefailure) {
       Get.defaultDialog(
-        title: "62".tr,
-        middleText: "63".tr,
+        title: "❌network error🌐".tr,
+        middleText: "Please check your internet connection".tr,
         backgroundColor: Colors.white,
         titleStyle: TextStyle(color: Colors.black),
         middleTextStyle: TextStyle(color: Colors.black),
@@ -87,7 +87,7 @@ class ForgotPasswordControllerImp extends ForgotpasswordController {
         message = "Erreur du serveur".tr;
         break;
       case StatusRequest.serverexception:
-        message = "67".tr;
+        message = "No account is associated with this email".tr;
         break;
       default:
         message = "Erreur inconnue".tr;

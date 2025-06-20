@@ -4,28 +4,28 @@ import 'package:get/get.dart';
 Future<bool> alertExitApp() async {
   bool exitConfirmed = false;
   await Get.defaultDialog(
-    title: "55".tr,
-    middleText: "56".tr,
+    title: "Attention".tr,
+    middleText: "You want to exit the application".tr,
     confirm: ElevatedButton(
       onPressed: () {
         exitConfirmed = true;
-        Get.back(); // Fermer la boîte de dialogue
+        Get.back();
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue, // Fond bleu
-        foregroundColor: Colors.white, // Texte blanc
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
-      child:  Text("58".tr),
+      child:  Text("Confirm".tr),
     ),
     cancel: ElevatedButton(
       onPressed: () {
         Get.back();
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue, // Fond bleu
-        foregroundColor: Colors.white, // Texte blanc
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
       ),
-      child:  Text("57".tr),
+      child:  Text("Cancel".tr),
     ),
   );
   return exitConfirmed;

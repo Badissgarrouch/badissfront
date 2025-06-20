@@ -9,7 +9,7 @@ class AvatarPicker extends StatefulWidget {
 
   const AvatarPicker({
     super.key,
-    this.size = 160,
+    this.size = 120,
     this.defaultAsset = 'assets/images/defaultavatar.png',
     this.onImageSelected,
   });

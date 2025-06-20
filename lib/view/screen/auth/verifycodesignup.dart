@@ -22,7 +22,7 @@ class VerifycodeSignup extends StatelessWidget {
               if (controller.statusRequest == StatusRequest.loading) {
                 return Center(
                   child: Lottie.asset(
-                    'assets/lotties/loading.json', // Chemin vers votre fichier JSON Lottie
+                    'assets/lotties/loading.json',
                     width: 200,
                     height: 200,
                     fit: BoxFit.fill,
@@ -44,12 +44,12 @@ class VerifycodeSignup extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    Customtexttitle(text: "41".tr),
+                    Customtexttitle(text: "Check code".tr),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "42".tr,
+                        "Please enter your digit code sent to your email".tr,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 16,

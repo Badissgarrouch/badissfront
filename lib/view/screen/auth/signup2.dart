@@ -1,5 +1,4 @@
 import 'package:credit_app/conroller/auth/signup2_controller.dart';
-import 'package:credit_app/conroller/auth/signup_controller.dart';
 import 'package:credit_app/core/class/statusrequest.dart';
 import 'package:credit_app/core/function/validinput.dart';
 import 'package:credit_app/view/widget/auth/custombutton.dart';
@@ -24,7 +23,7 @@ class Signup2 extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         elevation: 0.0,
         title: Text(
-          '11'.tr,
+          'Sign Up'.tr,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -43,7 +42,7 @@ class Signup2 extends StatelessWidget {
                   children: [
                     Center(
                       child: Lottie.asset(
-                        'assets/lotties/loading.json', // Chemin vers votre fichier JSON Lottie
+                        'assets/lotties/loading.json',
                         width: 200,
                         height: 200,
                         fit: BoxFit.fill,
@@ -60,7 +59,7 @@ class Signup2 extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Customtexttitle(text: "26".tr),
+                      Customtexttitle(text: "Traders Registration".tr),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.28, // 25% de l'écran
                         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -72,7 +71,7 @@ class Signup2 extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Customtextbody(
-                        text: "13".tr,
+                        text: "Fill out the form with your information to create your account".tr,
                       ),
                       const SizedBox(height: 20),
                       Customtextfield(
@@ -81,8 +80,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,3,20,"username");
                         },
                         mycontroller: controller.firstname,
-                        hinttext: '15'.tr,
-                        labeltext: '14'.tr,
+                        hinttext: 'Enter Your First Name'.tr,
+                        labeltext: 'First Name'.tr,
                         iconData: Icons.person,
                       ),
                       Customtextfield(
@@ -91,8 +90,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,3,20,"username");
                         },
                         mycontroller: controller.lastname,
-                        hinttext: '101'.tr,
-                        labeltext: '100'.tr,
+                        hinttext: 'Enter Your Last Name'.tr,
+                        labeltext: 'Last Name'.tr,
                         iconData: Icons.person_outline,
                       ),
                       const SizedBox(height: 5),
@@ -102,8 +101,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,10, 40,"email");
                         },
                         mycontroller: controller.email,
-                        hinttext: '17'.tr,
-                        labeltext: '16'.tr,
+                        hinttext: 'Enter Your Email'.tr,
+                        labeltext: 'Email'.tr,
                         iconData: Icons.email_outlined,
                       ),
                       const SizedBox(height: 5),
@@ -113,8 +112,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,8,20,"phone");
                         },
                         mycontroller: controller.phonenumber,
-                        hinttext: '19'.tr,
-                        labeltext: '18'.tr,
+                        hinttext: 'Enter Your Phone Number'.tr,
+                        labeltext: 'Phone Number'.tr,
                         iconData: Icons.phone_iphone,
                       ),
                       const SizedBox(height: 5),
@@ -124,8 +123,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,8,20,"cin");
                         },
                         mycontroller: controller.cartecin,
-                        hinttext: '77'.tr,
-                        labeltext: '76'.tr,
+                        hinttext: 'Enter your CIN number'.tr,
+                        labeltext: 'CIN'.tr,
                         iconData: Icons.credit_card_outlined,
                       ),
                       const SizedBox(height: 5),
@@ -135,8 +134,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,5,25,"address");
                         },
                         mycontroller: controller.businessaddress,
-                        hinttext: '28'.tr,
-                        labeltext: '27'.tr,
+                        hinttext: 'Enter Your Business Address'.tr,
+                        labeltext: 'Business Address'.tr,
                         iconData: Icons.location_on,
                       ),
                       const SizedBox(height: 5),
@@ -146,8 +145,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,2,15, "name");
                         },
                         mycontroller: controller.businessname,
-                        hinttext: '30'.tr,
-                        labeltext: '29'.tr,
+                        hinttext: 'Enter Your Business Name'.tr,
+                        labeltext: 'Business Name'.tr,
                         iconData: Icons.business,
                       ),
                       const SizedBox(height: 5),
@@ -157,8 +156,8 @@ class Signup2 extends StatelessWidget {
                           return validInput(val!,2,20,"activity");
                         },
                         mycontroller: controller.sectorofactivity,
-                        hinttext: '32'.tr,
-                        labeltext: '31'.tr,
+                        hinttext: 'Enter your Sector of Activity'.tr,
+                        labeltext: 'Sector of Activity'.tr,
                         iconData: Icons.factory,
                       ),
                       const SizedBox(height: 5),
@@ -172,8 +171,8 @@ class Signup2 extends StatelessWidget {
                         },
                         mycontroller: controller.password,
                         obscureText: controller.isshowpassword,
-                        hinttext: '21'.tr,
-                        labeltext: '20'.tr,
+                        hinttext: 'Enter Your Password'.tr,
+                        labeltext: 'Password'.tr,
                         iconData: Icons.lock_outline,
                       )),
                       const SizedBox(height: 5),
@@ -187,13 +186,13 @@ class Signup2 extends StatelessWidget {
                         },
                         mycontroller: controller.confirmpassword,
                         obscureText: controller.isshowpassword,
-                        hinttext: '23'.tr,
-                        labeltext: '22'.tr,
+                        hinttext: 'Enter to confirm Password'.tr,
+                        labeltext: 'Confirm Password'.tr,
                         iconData: Icons.key,
                       )),
                       const SizedBox(height: 7),
                       Custombutton(
-                        text: '11'.tr,
+                        text: 'Sign Up'.tr,
                         onPressed: () {
                           controller.signUp2(); // Action pour l'inscription
                         },
@@ -202,8 +201,8 @@ class Signup2 extends StatelessWidget {
 
                       // Section "Already have an account? Sign In"
                       Textsignup(
-                        textone: "24".tr,
-                        texttwo: "25".tr,
+                        textone: "Already have an account?".tr,
+                        texttwo: "Sign In".tr,
                         onTap: () {
                           controller.goToSignIn();
                         },

@@ -1,3 +1,4 @@
+import 'package:credit_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 
 class DetailRow extends StatelessWidget {
@@ -17,7 +18,7 @@ class DetailRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, color: Colors.blue),
+        Icon(icon, color: AppColors.darkBlue),
         const SizedBox(width: 16),
         Expanded(
           child: Column(
@@ -26,8 +27,8 @@ class DetailRow extends StatelessWidget {
               Text(
                 title,
                 style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[600],
+                  fontSize: 16,
+                  color: Colors.grey[800],
                 ),
               ),
               const SizedBox(height: 4),
@@ -35,7 +36,7 @@ class DetailRow extends StatelessWidget {
                 value,
                 style: const TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

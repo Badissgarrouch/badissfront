@@ -1,5 +1,6 @@
 import 'package:credit_app/view/widget/invitation/respond/detail_row.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SendDetailsCard extends StatelessWidget {
   final String email;
@@ -36,25 +37,25 @@ class SendDetailsCard extends StatelessWidget {
         children: [
           DetailRow(
             icon: Icons.email,
-            title: "Email",
+            title: "Email".tr,
             value: email,
           ),
           const Divider(height: 32),
           DetailRow(
             icon: Icons.phone,
-            title: "Téléphone",
+            title: "Phone".tr,
             value: phone,
           ),
           const Divider(height: 32),
           DetailRow(
             icon: Icons.location_on,
-            title: "Address",
+            title: "Address".tr,
             value: businessAddress,
           ),
           const Divider(height: 32),
           DetailRow(
             icon: Icons.business,
-            title: "Type de commerce",
+            title: "Type of business".tr,
             value: sectorOfActivity,
           ),
         ],

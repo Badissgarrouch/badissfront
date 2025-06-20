@@ -37,8 +37,8 @@ class SignUpControllerImp extends SignUpController {
   void signUp() async {
     if (password.text != confirmpassword.text) {
       Get.snackbar(
-        "60".tr,
-        "64".tr,
+        "⚠ Attention".tr,
+        "Password do not match".tr,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.blueAccent,
         colorText: Colors.black,
@@ -77,12 +77,9 @@ class SignUpControllerImp extends SignUpController {
             await box.write('${userEmail}_lastName', lastname.text);
             await box.write('${userEmail}_email', email.text);
             await box.write('${userEmail}_phone', phonenumber.text);
-
-            // Stocke aussi l'email courant pour savoir quel compte est connecté
             await box.write('current_user', userEmail);
             Get.offNamed(AppRoute.verifyCodesignup, arguments: {"email": email.text});
           } else {
-            // Vérifie si l'email est déjà utilisé
             if (response['message'].toLowerCase().contains("déjà utilisé") ||
                 response['message'].toLowerCase().contains("already used")) {
               Get.snackbar(
@@ -104,8 +101,8 @@ class SignUpControllerImp extends SignUpController {
           }
         } else if (statusRequest == StatusRequest.offlinefailure) {
           Get.defaultDialog(
-            title: "62".tr,
-            middleText: "63".tr,
+            title: "❌network error🌐".tr,
+            middleText: "Please check your internet connection".tr,
             backgroundColor: Colors.white,
             titleStyle: TextStyle(color: Colors.black),
             middleTextStyle: TextStyle(color: Colors.black),
@@ -114,8 +111,8 @@ class SignUpControllerImp extends SignUpController {
           );
         } else {
           Get.defaultDialog(
-            title: "60".tr,
-            middleText: "61".tr,
+            title: "⚠ Attention".tr,
+            middleText: "email is already used".tr,
           );
         }
       } catch (e) {

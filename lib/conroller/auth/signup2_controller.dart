@@ -40,8 +40,8 @@ class SignUp2ControllerImp extends SignUpController2 {
   void signUp2() async {
     if (password.text != confirmpassword.text) {
       Get.snackbar(
-        "60".tr,
-        "64".tr,
+        "⚠ Attention".tr,
+        "Password do not match".tr,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.blueAccent,
         colorText: Colors.black,
@@ -94,8 +94,8 @@ class SignUp2ControllerImp extends SignUpController2 {
             if (response['message'].toLowerCase().contains("déjà utilisé") ||
                 response['message'].toLowerCase().contains("already used")) {
               Get.snackbar(
-                "60".tr,
-                "61".tr,
+                "⚠ Attention".tr,
+                "email is already used".tr,
                 snackPosition: SnackPosition.BOTTOM,
                 backgroundColor: Colors.red,
                 colorText: Colors.white,
@@ -124,8 +124,8 @@ class SignUp2ControllerImp extends SignUpController2 {
           }
         } else if (statusRequest == StatusRequest.offlinefailure) {
           Get.defaultDialog(
-            title: "62".tr,
-            middleText: "63".tr,
+            title: "❌network error🌐".tr,
+            middleText: "Please check your internet connection".tr,
             backgroundColor: Colors.white,
             titleStyle: TextStyle(color: Colors.black),
             middleTextStyle: TextStyle(color: Colors.black),
@@ -134,8 +134,8 @@ class SignUp2ControllerImp extends SignUpController2 {
           );
         } else {
           Get.defaultDialog(
-            title: "60".tr,
-            middleText: "61".tr,
+            title: "⚠ Attention".tr,
+            middleText: "email is already used".tr,
           );
         }
       } catch (e) {

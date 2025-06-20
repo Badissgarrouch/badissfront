@@ -1,9 +1,10 @@
 import 'package:credit_app/conroller/home/commercant_controller.dart';
-import 'package:credit_app/core/component/avatar_picker.dart';
+
 import 'package:credit_app/core/component/services_card.dart';
 import 'package:credit_app/view/widget/home/customappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../conroller/invitation/send_controller.dart';
 import '../../../conroller/invitation/sendtoclient_controller.dart';
@@ -21,12 +22,11 @@ class Commercanthome extends GetView<CommercantControllerImp> {
 
 
     return Obx(() {
-      // ✅ Vérifie correctement si la recherche est vide
       if (searchQuery.value.isEmpty) {
         return Column(
           children: [
             Customappbar(
-              titleappbar: "Find Customer or trader",
+              titleappbar: "Find Customers".tr,
               onPressedIcon: () {},
               onSearchChanged: (query) {
                 searchQuery.value = query;
@@ -41,13 +41,22 @@ class Commercanthome extends GetView<CommercantControllerImp> {
                       onTap: () {},
                       child: Column(
                         children: [
-                          const AvatarPicker(),
+                          Container(
+                            width: 250,
+                            height: 200,
+                            margin: const EdgeInsets.all(8),
+                            child: Lottie.asset(
+                              'assets/lotties/profile.json',
+                              fit: BoxFit.contain,
+                              repeat: true,
+                            ),
+                          ),
                           const SizedBox(height: 8),
                           GetBuilder<CommercantControllerImp>(
                             builder: (controller) {
                               return Obx(() => Text(
                                 '${controller.firstName.value} ${controller.lastName.value}',
-                                style: Theme.of(context).textTheme.titleMedium,
+                                style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)
                               ));
                             },
                           ),
@@ -60,34 +69,34 @@ class Commercanthome extends GetView<CommercantControllerImp> {
                       crossAxisCount: 2,
                       children: [
                         ServiceCard(
-                          title: 'CLIENTS',
+                          title: 'INVITATIONS'.tr,
                           icon: Icons.people_alt,
+                          onTap: controller.navigateToClients,
+                        ),
+                        ServiceCard(
+                          title: 'EVALUATIONS'.tr,
+                          icon: Icons.calendar_today,
+                          onTap:controller.navigateToEvaluation,
+                        ),
+                        ServiceCard(
+                          title: 'PROPOSITIONS'.tr,
+                          icon: Icons.inventory,
                           onTap: controller.navigateToProducts,
                         ),
                         ServiceCard(
-                          title: 'ÉCHÉANCES',
-                          icon: Icons.calendar_today,
-                          onTap: controller.navigateToMerchants,
-                        ),
-                        ServiceCard(
-                          title: 'PRODUITS',
-                          icon: Icons.inventory,
-                          onTap: controller.navigateToMerchants,
-                        ),
-                        ServiceCard(
-                          title: 'FOURNISSEURS',
+                          title: 'MY PROPOSITIONS'.tr,
                           icon: Icons.local_shipping,
-                          onTap: controller.navigateToMerchants,
+                          onTap:controller.navigateTocredit
                         ),
                         ServiceCard(
-                          title: 'RAPPORTS',
+                          title: 'HISTORY'.tr,
                           icon: Icons.description,
-                          onTap: controller.navigateToMerchants,
+                          onTap:controller.navigateToRapport
                         ),
                         ServiceCard(
-                          title: 'STATISTIQUES',
+                          title: 'STATISTIC'.tr,
                           icon: Icons.bar_chart,
-                          onTap: controller.navigateToMerchants,
+                          onTap:controller.navigateToStatistic
                         ),
                       ],
                     ),
@@ -98,11 +107,10 @@ class Commercanthome extends GetView<CommercantControllerImp> {
           ],
         );
       } else {
-        // ✅ Affichage des résultats de recherche
         return Column(
           children: [
             Customappbar(
-              titleappbar: "Find traders",
+              titleappbar: "Find Traders".tr,
               onPressedIcon: () {},
               onSearchChanged: (query) {
                 searchQuery.value = query;
@@ -112,7 +120,7 @@ class Commercanthome extends GetView<CommercantControllerImp> {
             Expanded(
               child: Obx(() {
                 if (searchQuery.value.length < 2) {
-                  return const Center(child: Text("Enter at least 2 characters"));
+                  return Center(child: Text("Enter at least 3 characters".tr));
                 }
 
                 if (controller.searchStatus.value == StatusRequest.loading) {
@@ -120,14 +128,14 @@ class Commercanthome extends GetView<CommercantControllerImp> {
                 }
 
                 if (controller.searchResults.isEmpty) {
-                  return const Center(child: Text("No results found"));
+                  return Center(child: Text("No results found".tr));
                 }
 
                 return ListView.builder(
                   itemCount: controller.searchResults.length,
                   itemBuilder: (context, index) {
                     final user = controller.searchResults[index];
-                    final isTrader = user.userType == '2'; // Supposant que '2' = Commerçant
+                    final isTrader = user.userType == '2';
 
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -187,7 +195,7 @@ class Commercanthome extends GetView<CommercantControllerImp> {
                                             ),
                                             const SizedBox(height: 4),
                                             Text(
-                                              user.businessName ?? (isTrader ? 'Trader' : 'Customer'),
+                                              user.businessName ?? (isTrader ? 'Trader'.tr : 'Customer'.tr),
                                               style: TextStyle(
                                                 fontSize: 14,
                                                 color: isTrader ? Colors.indigo : Colors.blueGrey,
@@ -215,7 +223,7 @@ class Commercanthome extends GetView<CommercantControllerImp> {
                                   ),
                                 ),
                                 child: Text(
-                                  "Profil",
+                                  "Profile".tr,
                                   style: TextStyle(
                                     color: isTrader
                                         ? Colors.indigo.shade700

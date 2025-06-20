@@ -12,14 +12,6 @@ class Homescreencommercant extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeScreenCommercantControllerImp());
     return GetBuilder<HomeScreenCommercantControllerImp>(builder: (controller) => Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.settings),
-        backgroundColor: Colors.lightBlue,
-        foregroundColor: Colors.black, // Couleur bleue
-        elevation: 4, // Ombre légère
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -34,7 +26,7 @@ class Homescreencommercant extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Custombuttonappbar(
-                    textbutton: 'Home',
+                    textbutton: 'Home'.tr,
                     icondata: Icons.home,
                     onPressed: () {
                       controller.changePage(0);
@@ -43,8 +35,8 @@ class Homescreencommercant extends StatelessWidget {
 
                   ),
                   Custombuttonappbar(
-                    textbutton: 'Settings',
-                    icondata: Icons.settings,
+                    textbutton: 'Profile'.tr,
+                    icondata: Icons.person_pin_rounded,
                     onPressed: () {
                       controller.changePage(1);
                     },
@@ -59,8 +51,8 @@ class Homescreencommercant extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Custombuttonappbar(
-                    textbutton: 'profile',
-                    icondata: Icons.person,
+                    textbutton: 'Offer'.tr,
+                    icondata: Icons.local_offer,
                     onPressed: () {
                       controller.changePage(2);
                     },
@@ -68,8 +60,8 @@ class Homescreencommercant extends StatelessWidget {
 
                   ),
                   Custombuttonappbar(
-                    textbutton: 'favor',
-                    icondata: Icons.monitor_heart,
+                    textbutton: 'Cards'.tr,
+                    icondata: Icons.add_card,
                     onPressed: () {
                       controller.changePage(3);
                     },

@@ -1,30 +1,42 @@
+
 import 'package:flutter/material.dart';
 
 class RespondCardProfile extends StatelessWidget {
   final String initials;
   final String name;
-  final String business;
+  final String businessName;
 
   const RespondCardProfile({
     super.key,
     required this.initials,
     required this.name,
-    required this.business,
+    required this.businessName,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundColor: Colors.blue[50],
-          child: Text(
-            initials,
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[700],
+
+        Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(
+              colors: [Colors.green, Colors.red],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              initials,
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -34,12 +46,12 @@ class RespondCardProfile extends StatelessWidget {
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Colors.grey[900],
+            color: Colors.black,
           ),
         ),
         const SizedBox(height: 8),
         Text(
-          business,
+          businessName,
           style: TextStyle(
             fontSize: 16,
             color: Colors.grey[600],

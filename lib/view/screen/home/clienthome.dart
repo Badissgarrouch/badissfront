@@ -1,9 +1,9 @@
 import 'package:credit_app/conroller/home/client_controller.dart';
-import 'package:credit_app/core/component/avatar_picker.dart';
 import 'package:credit_app/core/component/services_card.dart';
 import 'package:credit_app/view/widget/home/customappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../conroller/invitation/send_controller.dart';
 import '../../../core/class/statusrequest.dart';
@@ -18,12 +18,11 @@ class Clienthome extends GetView<ClientControllerImp> {
     final RxString searchQuery = ''.obs;
 
     return Obx(() {
-      // ✅ Vérifie correctement si la recherche est vide
       if (searchQuery.value.isEmpty) {
         return Column(
           children: [
             Customappbar(
-              titleappbar: "Find traders",
+              titleappbar: "Find Traders".tr,
               onPressedIcon: () {},
               onSearchChanged: (query) {
                 searchQuery.value = query;
@@ -38,14 +37,23 @@ class Clienthome extends GetView<ClientControllerImp> {
                       onTap: () {},
                       child: Column(
                         children: [
-                          const AvatarPicker(),
-                          const SizedBox(height: 8),
+                          Container(
+                            width: 250,
+                            height: 200,
+                            margin: const EdgeInsets.all(8),
+                            child: Lottie.asset(
+                              'assets/lotties/profile.json',
+                              fit: BoxFit.contain,
+                              repeat: true,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
                           GetBuilder<ClientControllerImp>(
                             builder: (controller) {
                               return Obx(() =>
                                   Text(
                                     '${controller.firstName.value} ${controller.lastName.value}',
-                                    style: Theme.of(context).textTheme.titleMedium,
+                                    style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),
                                   ));
                             },
                           ),
@@ -58,24 +66,24 @@ class Clienthome extends GetView<ClientControllerImp> {
                       crossAxisCount: 2,
                       children: [
                         ServiceCard(
-                          title: 'Produits',
-                          icon: Icons.shopping_basket,
+                          title: 'CREDIT'.tr,
+                          icon: Icons.credit_score_sharp,
                           onTap: controller.navigateToProducts,
                         ),
                         ServiceCard(
-                          title: 'Commerçants',
-                          icon: Icons.store,
+                          title: 'TRADERS'.tr,
+                          icon: Icons.person_add_alt_1,
                           onTap: controller.navigateToMerchants,
                         ),
                         ServiceCard(
-                          title: 'Crédits',
-                          icon: Icons.credit_score,
-                          onTap: controller.navigateToMerchants,
+                          title: 'HISTORY'.tr,
+                          icon: Icons.history,
+                          onTap:controller.navigateToCredit,
                         ),
                         ServiceCard(
-                          title: 'Salaire',
-                          icon: Icons.payment,
-                          onTap: controller.navigateToMerchants,
+                          title: 'STATISTIC'.tr,
+                          icon: Icons.bar_chart,
+                          onTap:controller.navigateToStatistique
                         ),
                       ],
                     ),
@@ -86,11 +94,10 @@ class Clienthome extends GetView<ClientControllerImp> {
           ],
         );
       } else {
-        // ✅ Affichage des résultats de recherche
         return Column(
           children: [
             Customappbar(
-              titleappbar: "Find traders",
+              titleappbar: "Find Traders".tr,
               onPressedIcon: () {},
               onSearchChanged: (query) {
                 searchQuery.value = query;
@@ -100,7 +107,7 @@ class Clienthome extends GetView<ClientControllerImp> {
             Expanded(
               child: Obx(() {
                 if (searchQuery.value.length < 2) {
-                  return const Center(child: Text("Enter at least 2 characters"));
+                  return Center(child: Text("Enter at least 3 characters".tr));
                 }
 
                 if (controller.searchStatus.value == StatusRequest.loading) {
@@ -108,7 +115,7 @@ class Clienthome extends GetView<ClientControllerImp> {
                 }
 
                 if (controller.searchResults.isEmpty) {
-                  return const Center(child: Text("No results found"));
+                  return  Center(child: Text("No results found".tr));
                 }
 
                 return ListView.builder(
@@ -136,7 +143,6 @@ class Clienthome extends GetView<ClientControllerImp> {
                                 borderRadius: BorderRadius.circular(16),
                                 onTap: () {
                                   mycontroller.goToSendcommercant(user);
-                                  // Action principale (ex: sélectionner l'utilisateur)
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -170,7 +176,7 @@ class Clienthome extends GetView<ClientControllerImp> {
                                             ),
                                             const SizedBox(height: 4),
                                             Text(
-                                              user.businessName ??'Trader',
+                                              user.businessName ??'Trader'.tr,
                                               style: const TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.grey,
@@ -188,8 +194,7 @@ class Clienthome extends GetView<ClientControllerImp> {
                               padding: const EdgeInsets.only(right: 12.0),
                               child: TextButton(
                                 onPressed: () {
-                                  // Action vers profil détaillé
-                                  print('Voir profil de ${user.firstName}');
+                                  print('View profile of${user.firstName}'.tr);
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor: Colors.indigo.shade50,
@@ -200,7 +205,7 @@ class Clienthome extends GetView<ClientControllerImp> {
                                   ),
                                 ),
                                 child: Text(
-                                  "Profil",
+                                  "Profile".tr,
                                   style: TextStyle(
                                     color: Colors.indigo.shade700,
                                     fontWeight: FontWeight.w500,

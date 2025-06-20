@@ -15,7 +15,7 @@ class ResetPasswordControllerImp extends ResetPasswordController {
 
   late TextEditingController newPasswordController;
   late TextEditingController confirmPasswordController;
-  late String resetToken; // Doit venir de verifyPasswordResetOtp
+  late String resetToken;
   bool isShowPassword = true;
   StatusRequest? statusRequest;
 
@@ -28,7 +28,7 @@ class ResetPasswordControllerImp extends ResetPasswordController {
   void onInit() {
     newPasswordController = TextEditingController();
     confirmPasswordController = TextEditingController();
-    resetToken = Get.arguments?['resetToken'] ??''; // Récupère le token depuis la navigation
+    resetToken = Get.arguments?['resetToken'] ??'';
     super.onInit();
   }
 

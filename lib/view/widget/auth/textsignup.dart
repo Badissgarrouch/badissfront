@@ -17,9 +17,9 @@ class Textsignup extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(textone), // Suppression du const
+        Text(textone),
         InkWell(
-          onTap: onTap, // Utilisation du onTap passé en paramètre
+          onTap: onTap,
           child: Text(
             texttwo,
             style: const TextStyle(

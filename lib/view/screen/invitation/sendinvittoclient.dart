@@ -1,4 +1,3 @@
-
 import 'package:credit_app/core/class/statusrequest.dart';
 import 'package:credit_app/view/widget/invitation/sendtoclient/detailclient.dart';
 import 'package:flutter/material.dart';
@@ -6,12 +5,10 @@ import 'package:get/get.dart';
 
 import '../../../conroller/invitation/sendtoclient_controller.dart';
 import '../../../data/datasource/remote/home/search.dart';
-import '../../widget/invitation/send/Header2.dart';
+import '../../widget/invitation/respond/hearder.dart';
 import '../../widget/invitation/send/confimdialog.dart';
-
 import '../../widget/invitation/send/snedactions.dart';
 import '../../widget/invitation/send/profile_card.dart';
-
 
 class SendClientInvitation extends StatelessWidget {
   const SendClientInvitation({super.key});
@@ -23,20 +20,22 @@ class SendClientInvitation extends StatelessWidget {
     if (argumentUser != null && controller.selectedUser.value == null) {
       controller.selectedUser.value = argumentUser;
     }
+
     return Scaffold(
-      body: SafeArea(
-        child: Obx(() {
-          final user = controller.selectedUser.value;
-          if (user == null) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      backgroundColor: const Color(0xFFFAFAFA),
+      body: Obx(() {
+        final user = controller.selectedUser.value;
+        if (user == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-          final initials = '${user.firstName[0]}${user.lastName[0]}'.toUpperCase();
+        final initials = '${user.firstName[0]}${user.lastName[0]}'.toUpperCase();
 
-          return Column(
-            children: [
-              const Header2(),
-              Expanded(
+        return Column(
+          children: [
+             Header(text: 'Profile details'.tr),
+            Expanded(
+              child: SafeArea(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(24),
                   child: Column(
@@ -44,12 +43,12 @@ class SendClientInvitation extends StatelessWidget {
                       SendCardProfile(
                         initials: initials,
                         name: '${user.firstName} ${user.lastName}',
-                        businessName: user.businessName ?? 'Non spécifié',
+                        businessName: user.businessName ?? 'Customer'.tr,
                       ),
                       const SizedBox(height: 32),
                       SendDetailClient(
                         email: user.email,
-                        phone: user.phone ?? 'Non spécifié',
+                        phone: user.phone ?? 'Not specified'.tr,
                       ),
                       const SizedBox(height: 40),
                       SendActions(
@@ -68,10 +67,10 @@ class SendClientInvitation extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          );
-        }),
-      ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

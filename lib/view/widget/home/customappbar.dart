@@ -1,18 +1,21 @@
 import 'package:credit_app/conroller/home/client_controller.dart';
+import 'package:credit_app/conroller/notification/notification_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage_pro/get_storage_pro.dart';
+import '../../../conroller/home/profile_controller.dart';
+import '../../../core/constant/routes.dart';
 
 class Customappbar extends StatefulWidget {
   final String titleappbar;
   final void Function()? onPressedIcon;
-  final void Function(String)? onSearchChanged; // Nouveau callback
+  final void Function(String)? onSearchChanged;
 
   const Customappbar({
     Key? key,
     required this.titleappbar,
     this.onPressedIcon,
     this.onSearchChanged,
-    // Nouveau paramètre
   }) : super(key: key);
 
   @override
@@ -24,6 +27,7 @@ class _CustomappbarState extends State<Customappbar> {
   final TextEditingController _searchController = TextEditingController();
   String activeIcon = '';
   final FocusNode _focusNode = FocusNode();
+  final box = GetStorage();
 
   @override
   void initState() {
@@ -34,6 +38,8 @@ class _CustomappbarState extends State<Customappbar> {
         activeIcon = _focusNode.hasFocus ? 'search' : '';
       });
     });
+
+    Get.put(NotificationController());
   }
 
   void _onSearchChanged() {
@@ -45,10 +51,9 @@ class _CustomappbarState extends State<Customappbar> {
   }
 
   void _handleIconTap(String iconName, void Function()? action) {
-    // Réinitialiser la recherche
     if (_searchController.text.isNotEmpty) {
       _searchController.clear();
-      widget.onSearchChanged?.call(''); // Notifier le parent que la recherche est vide
+      widget.onSearchChanged?.call('');
     }
 
     _focusNode.unfocus();
@@ -81,50 +86,82 @@ class _CustomappbarState extends State<Customappbar> {
               decoration: InputDecoration(
                 prefixIcon: IconButton(
                   icon: Icon(
-                    Icons.search,
+                    Icons.search_outlined,
                     color: _getIconColor('search'),
                   ),
-                  onPressed: () {
-                    // Ferme le clavier si besoin
-                  },
+                  onPressed: () {},
                 ),
                 hintText: widget.titleappbar,
                 hintStyle: const TextStyle(fontSize: 15),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.black12),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blueAccent),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 filled: true,
                 fillColor: Colors.grey[100],
               ),
             ),
+          ),
+          const SizedBox(width: 5),
 
-          ),
+          Obx(() {
+            final notificationController = Get.find<NotificationController>();
+            final profileController = Get.find<ProfileController>();
+
+            return Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    border: Border.all(color: Colors.black12),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  width: 50,
+                  height: 60,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: IconButton(
+                    onPressed: () {
+                      _handleIconTap('notification', () {
+                        final token = box.read('token');
+                        Get.toNamed(AppRoute.notification, arguments: {'token': token});
+                      });
+                    },
+                    icon: Icon(
+                      Icons.notifications_active,
+                      size: 25,
+                      color: _getIconColor('notification'),
+                    ),
+                  ),
+                ),
+                if (notificationController.notificationCount.value > 0 && profileController.isNotificationEnabled.value)
+                  Positioned(
+                    right: 5,
+                    top: 5,
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [Colors.red[600]!, Colors.red[800]!]),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '${notificationController.notificationCount.value}',
+                        style: const TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          }),
           const SizedBox(width: 5),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            width: 50,
-            height: 60,
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: IconButton(
-              onPressed: () {
-                _handleIconTap('notification', widget.onPressedIcon);
-              },
-              icon: Icon(
-                Icons.notifications_active_outlined,
-                size: 25,
-                color: _getIconColor('notification'),
-              ),
-            ),
-          ),
-          const SizedBox(width: 5),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black12),
+              borderRadius: BorderRadius.circular(15),
             ),
             width: 50,
             height: 60,

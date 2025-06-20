@@ -1,6 +1,5 @@
 import 'package:credit_app/conroller/auth/verifycode_controller.dart';
 import 'package:credit_app/core/class/statusrequest.dart';
-import 'package:credit_app/view/widget/auth/customtextbody.dart';
 import 'package:credit_app/view/widget/auth/customtexttitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -15,7 +14,7 @@ class Verifycode extends StatelessWidget {
     VerifycodeControllerImp controller = Get.put(VerifycodeControllerImp());
 
     return Scaffold(
-      backgroundColor: Colors.white, // Fond blanc pour toute la page
+      backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
           child: GetBuilder<VerifycodeControllerImp>(
@@ -23,7 +22,7 @@ class Verifycode extends StatelessWidget {
               if (controller.statusRequest == StatusRequest.loading) {
                 return Center(
                     child: Lottie.asset(
-                      'assets/lotties/loading.json', // Chemin vers votre fichier JSON Lottie
+                      'assets/lotties/loading.json',
                       width: 200,
                       height: 200,
                       fit: BoxFit.fill,
@@ -35,7 +34,6 @@ class Verifycode extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // Animation Lottie avec fond transparent
                     SizedBox(
                       width: 270,
                       height: 240,
@@ -46,14 +44,13 @@ class Verifycode extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 30),
-                    Customtexttitle(text: "41".tr),
+                    Customtexttitle(text: "Please enter your digit code sent to your email".tr),
                     const SizedBox(height: 20),
 
-                    // Texte centré
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        "42".tr,
+                        "Check code".tr,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 16,

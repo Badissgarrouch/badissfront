@@ -1,16 +1,17 @@
 import 'package:credit_app/core/class/statusrequest.dart';
 import 'package:credit_app/core/function/handingdatacontroller.dart';
 import 'package:credit_app/data/datasource/remote/auth/login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage_pro/get_storage_pro.dart' ;
 
 import '../../core/constant/routes.dart';
+import '../notification/appController.dart';
 
 abstract class LoginController extends GetxController {
   login();
   goTosignup();
+  showPassword();
 }
 
 class LoginControllerImp extends LoginController {
@@ -21,6 +22,7 @@ class LoginControllerImp extends LoginController {
   bool isshowpassword = true;
   StatusRequest? statusRequest = StatusRequest.none;
   final box = GetStorage();
+  final AppController appController = Get.find<AppController>();
 
   @override
   void showPassword() {
@@ -41,11 +43,8 @@ class LoginControllerImp extends LoginController {
 
       if (statusRequest == StatusRequest.success) {
         if (response['status'] == "success") {
-
           final token = response['token'];
           final userData = response['data']['user'];
-
-
 
           await box.write('current_user', email.text);
           await box.write('token', token);
@@ -53,6 +52,8 @@ class LoginControllerImp extends LoginController {
           await box.write('${email.text}_lastName', userData['lastName']);
           await box.write('userId', userData['id']);
 
+          // Mettre à jour le token dans AppController
+          appController.setUserToken(token);
 
           final userType = int.tryParse(response['data']['user']['userType']?.toString() ?? '') ?? -1;
           Get.offNamed(userType == 1 ? AppRoute.homeScreen : AppRoute.homeScreenCommercant);
@@ -69,13 +70,14 @@ class LoginControllerImp extends LoginController {
     }
   }
 
+
   void _handleLoginError(Map response) {
     final errorMessage = response['message']?.toString().toLowerCase() ?? '';
 
     if (errorMessage.contains('email') || errorMessage.contains('password')) {
       Get.defaultDialog(
         title: "Erreur de connexion".tr,
-        middleText: "66".tr,
+        middleText: "Email or Password not correct".tr,
       );
     } else if (errorMessage.contains('exists')) {
       Get.defaultDialog(
@@ -94,12 +96,12 @@ class LoginControllerImp extends LoginController {
 
   void _handleStatusRequestError() {
     String message;
-    String title = "60".tr;
+    String title = "⚠ Attention".tr;
 
     if (statusRequest == StatusRequest.offlinefailure) {
       Get.defaultDialog(
-        title: "62".tr,
-        middleText: "63".tr,
+        title: "❌network error🌐".tr,
+        middleText: "Please check your internet connection".tr,
         backgroundColor: Colors.white,
         titleStyle: TextStyle(color: Colors.black),
         middleTextStyle: TextStyle(color: Colors.black),
@@ -114,10 +116,10 @@ class LoginControllerImp extends LoginController {
         message = "Erreur du serveur".tr;
         break;
       case StatusRequest.serverexception:
-        message = "66".tr;
+        message = "Email or Password not correct".tr;
         break;
       default:
-        message = "Erreur inconnue".tr;
+        message = "Email or Password not correct".tr;
     }
 
     Get.defaultDialog(

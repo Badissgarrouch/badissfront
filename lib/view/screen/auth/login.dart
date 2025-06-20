@@ -24,7 +24,7 @@ class Login extends StatelessWidget {
         backgroundColor: Colors.blueAccent,
         elevation: 0.0,
         title: Text(
-          '25'.tr,
+          'Sign In'.tr,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -64,7 +64,7 @@ class Login extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Customtexttitle(text: "33".tr),
+                        Customtexttitle(text: "Welcome Back".tr),
                         const SizedBox(height: 5),
                         const CircleAvatar(
                           radius: 110,
@@ -72,7 +72,7 @@ class Login extends StatelessWidget {
                           backgroundColor: Colors.transparent,
                         ),
                         const SizedBox(height: 1),
-                        Customtextbody(text: "59".tr),
+                        Customtextbody(text: "Sign in with your email and password".tr),
                         const SizedBox(height: 20),
                         Customtextfield(
                           isNumber: false,
@@ -80,8 +80,8 @@ class Login extends StatelessWidget {
                             return validInput(val!, 10, 40, 'email');
                           },
                           mycontroller: controller.email,
-                          hinttext: '17'.tr,
-                          labeltext: '16'.tr,
+                          hinttext: 'Enter Your Email'.tr,
+                          labeltext: 'Email'.tr,
                           iconData: Icons.email_outlined,
                         ),
                         const SizedBox(height: 5),
@@ -97,8 +97,8 @@ class Login extends StatelessWidget {
                               },
                               mycontroller: controller.password,
                               obscureText: controller.isshowpassword,
-                              hinttext: '21'.tr,
-                              labeltext: '20'.tr,
+                              hinttext: 'Enter Your Password'.tr,
+                              labeltext: 'Password'.tr,
                               iconData: Icons.lock_outline,
                             );
                           },
@@ -111,7 +111,7 @@ class Login extends StatelessWidget {
                                 Get.toNamed(AppRoute.forgotPassword);
                               },
                               child: Text(
-                                "34".tr,
+                                "Forgot Password?".tr,
                                 style: const TextStyle(color: Colors.blue),
                               ),
                             ),
@@ -119,15 +119,15 @@ class Login extends StatelessWidget {
                         ),
                         const SizedBox(height: 7),
                         Custombutton(
-                          text: '25'.tr,
+                          text: 'Sign In'.tr,
                           onPressed: () {
                             controller.login();
                           },
                         ),
                         const SizedBox(height: 10),
                         Textsignup(
-                          textone: "35".tr,
-                          texttwo: "11".tr,
+                          textone: "You don't have an account yet!".tr,
+                          texttwo: "Sign Up".tr,
                           onTap: () {
                             controller.goTosignup();
                           },

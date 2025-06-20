@@ -13,7 +13,7 @@ class Languages extends GetView<LocaleController> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // Centre les éléments
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               "assets/images/language.png",
@@ -23,7 +23,7 @@ class Languages extends GetView<LocaleController> {
             ),
             const SizedBox(height: 20),
             Text(
-              '1'.tr,
+              'Select your preferred language'.tr,
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -31,26 +31,26 @@ class Languages extends GetView<LocaleController> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-            CustomerButton(textButton: '2'.tr, onPressed: () {
+            CustomerButton(textButton: 'English'.tr, onPressed: () {
               controller.changeLang("en");
             }),
             const SizedBox(height: 10),
-            CustomerButton(textButton: '3'.tr, onPressed: () {
+            CustomerButton(textButton: 'French'.tr, onPressed: () {
               controller.changeLang("fr");
             }),
             const SizedBox(height: 10),
-            CustomerButton(textButton: '4'.tr, onPressed: () {
+            CustomerButton(textButton: 'Arabic'.tr, onPressed: () {
               controller.changeLang("ar");
             }),
-            const Spacer(), // 🟢 Pousse le texte en bas
+            const Spacer(),
             Align(
-              alignment: Alignment.bottomRight, // 🔥 Place à droite
+              alignment: Alignment.bottomRight,
               child: TextButton(
                 onPressed: () {
                   Get.offNamed(AppRoute.onBoarding);
                 },
                 child: Text(
-                  "5".tr,
+                  "Next".tr,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -59,7 +59,7 @@ class Languages extends GetView<LocaleController> {
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Petit espace en bas
+            const SizedBox(height: 20),
           ],
         ),
       ),

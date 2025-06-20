@@ -32,7 +32,6 @@ class VerifycodeControllerImp extends VerifycodeController {
 
   @override
   checkCode() {
-    // Implémentation vide pour l'instant
   }
 
   @override
@@ -87,13 +86,13 @@ class VerifycodeControllerImp extends VerifycodeController {
 
   void _handleStatusRequestError() {
 
-    String title = "60".tr;
+    String title = "⚠ Attention".tr;
     String message;
 
     if (statusRequest == StatusRequest.offlinefailure) {
       Get.defaultDialog(
-        title: "62".tr,
-        middleText: "63".tr,
+        title: "❌network error🌐".tr,
+        middleText: "Please check your internet connection".tr,
         backgroundColor: Colors.white,
         titleStyle: TextStyle(color: Colors.black),
         middleTextStyle: TextStyle(color: Colors.black),
@@ -109,7 +108,7 @@ class VerifycodeControllerImp extends VerifycodeController {
         message = "Erreur du serveur".tr;
         break;
       case StatusRequest.serverexception:
-        message = "65".tr;
+        message = "Verify code not correct".tr;
         break;
       default:
         message = "Erreur inconnue".tr;

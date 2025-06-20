@@ -18,5 +18,28 @@ class AppRoute{
   static const String sendInvitation="/sendinvitation";
   static const String sendclientInvitation="/sendclientinvitation";
   static const String respondInvitation="/respondinvitation";
+  static const String commercantInvitationsPage="/commercantinvitatiospage";
+  static const String usersInvit="/usersinvit";
+  static const String friendListScreen="/friendlistscreen";
+  static const String sendOffer="/sendoffer";
+  static const String checkOffre="/checkoffre";
+  static const String offrelistScreen="/offrelistscreen";
+  static const String listSentOffer="/listsentoffer";
+  static const String updateOffer="/updateoffer";
+  static const String enterCardDetail="/entercarddetail";
+  static const String clientpaymentScreen="/clientpaymentscreen";
+  static const String recevoirPayment="/recevoirpayment";
+  static const String test1="/test1";
+  static const String test2="/test2";
+  static const String myAcceptedoffer="/myacceptedoffer";
+
+  static const String notification="/notification";
+  static const String evalution="/evaluation";
+  static const String getclientevalution="/getclientevaluation";
+  static const String statistic="/statistic";
+  static const String statistic2="/statistic2";
+  static const String checkoutscreen="/checkoutscreen";
+
+
 
 }

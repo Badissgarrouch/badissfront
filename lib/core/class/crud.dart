@@ -1,70 +1,84 @@
+
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-
 import 'package:credit_app/core/class/statusrequest.dart';
-import 'package:credit_app/core/function/checkinternet.dart';
+import 'package:credit_app/core/constant/methodhttp.dart';
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http show get, post;
-
+import 'package:http/http.dart' as http;
+import '../function/checkinternet.dart';
 
 class Crud {
-  Future<Either<StatusRequest, Map>> postData(String linkurl, Map data, {
-    Map<String, String>? headers,
-  }) async {
-    try {
-      final uri = Uri.parse(linkurl);
-      print('🌐 Connecting to: ${uri.toString()}');
+  Future<Either<StatusRequest, Map>> postData(String url, Map data,
+      {Map<String, String>? headers}) async {
+    return await sendRequest('POST', url, headers: headers, body: data);
+  }
 
-      final response = await http.post(
-        uri,
-        headers: {
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Accept': 'application/json',
-          ...?headers,
-        },
-        body: jsonEncode(data),
-      ).timeout(const Duration(seconds: 15));
+  Future<Either<StatusRequest, Map>> post2Data(
+      String url, Map data, File file,
+      {Map<String, String>? headers}) async {
+    return await sendMultipartRequest(url, data, file, headers: headers);
+  }
 
-      print('🔧 Response status: ${response.statusCode}');
-      print('📦 Response body: ${response.body}');
 
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        return Right(jsonDecode(response.body));
-      } else {
-        throw Exception('HTTP ${response.statusCode}');
-      }
-    } on SocketException {
-      print('🚨 Network error - Server unreachable');
-      return Left(StatusRequest.offlinefailure);
-    } on TimeoutException {
-      print('⏱️ Timeout - Server too slow');
-      return Left(StatusRequest.serverfailure);
-    } catch (e) {
-      print('💥 Unexpected error: $e');
-      return Left(StatusRequest.serverexception);
-    }
+  Future<Either<StatusRequest, Map>> patchData(String url, Map data,
+      {Map<String, String>? headers}) async {
+    return await sendRequest('PATCH', url, headers: headers, body: data);
+  }
+
+  Future<Either<StatusRequest, Map>> putData(String url, Map data,
+      {Map<String, String>? headers}) async {
+    return await sendRequest('PUT', url, headers: headers, body: data);
+  }
+
+  Future<Either<StatusRequest, Map>> deleteData(String url,
+      {Map<String, String>? headers}) async {
+    return await sendRequest('DELETE', url, headers: headers);
   }
 
   Future<Either<StatusRequest, Map>> getData(String url,
       {Map<String, String>? headers}) async {
-    try {
+    if (!await checkInternet()) return Left(StatusRequest.offlinefailure);
+    return await sendRequest('GET', url, headers: headers);
+  }
 
+  Future<Either<StatusRequest, Map>> sendMultipartRequest(String url, Map data,
+      File file,
+      {Map<String, String>? headers}) async {
+    try {
       if (!await checkInternet()) return Left(StatusRequest.offlinefailure);
 
-      print('🌐 GET Request to: $url');
-      final uri = Uri.parse(url);
-      final response = await http.get(
-        uri,
-        headers: headers,
-      ).timeout(const Duration(seconds: 15));
+      var request = http.MultipartRequest('POST', Uri.parse(url));
 
-      print('🔧 Response status: ${response.statusCode}');
-      print('📦 Response body: ${response.body}');
+      // Ajoute les headers
+      if (headers != null) {
+        request.headers.addAll(headers);
+      }
 
-      if (response.statusCode == 200) {
-        return Right(jsonDecode(response.body));
+      // Ajoute le fichier
+      request.files.add(await http.MultipartFile.fromPath(
+        'receiptImage', // Nom du champ dans le formulaire
+        file.path,
+        filename: 'receipt_${DateTime
+            .now()
+            .millisecondsSinceEpoch}.jpg',
+      ));
+
+      // Ajoute les autres champs
+      data.forEach((key, value) {
+        request.fields[key] = value.toString();
+      });
+
+      var response = await request.send();
+      var responseData = await response.stream.bytesToString();
+
+      print('🔧 Multipart Response status: ${response.statusCode}');
+      print('📦 Multipart Response body: $responseData');
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(jsonDecode(responseData));
       } else if (response.statusCode == 401) {
         return Left(StatusRequest.authfailure);
       } else {
@@ -75,7 +89,7 @@ class Crud {
     } on TimeoutException {
       return Left(StatusRequest.serverfailure);
     } catch (e) {
-      print('💥 GET Error: $e');
+      print('💥 Multipart error: $e');
       return Left(StatusRequest.serverexception);
     }
   }

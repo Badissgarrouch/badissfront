@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void showSendConfirmationDialog({
   required BuildContext context,
@@ -7,12 +8,12 @@ void showSendConfirmationDialog({
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: const Text("Confirmer l'envoi"),
-      content: const Text("Voulez-vous envoyer une invitation à ce commerçant ?"),
+      title: Text("Confirm sending".tr),
+      content: Text("Would you like to send an invitation to this merchant?".tr),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text("Annuler"),
+          child: Text("Cancel".tr),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -23,7 +24,7 @@ void showSendConfirmationDialog({
             onConfirm();
             Navigator.pop(context);
           },
-          child: const Text("Confirmer"),
+          child:  Text("Confirm".tr),
         ),
       ],
     ),
@@ -37,12 +38,12 @@ void showDeleteConfirmationDialog({
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: const Text("Supprimer l'invitation"),
-      content: const Text("Voulez-vous supprimer l'invitation envoyée à ce commerçant ?"),
+      title: Text("Delete invitation".tr),
+      content: Text("Do you want to delete the invitation sent to this merchant?".tr),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: const Text("Annuler"),
+          child: Text("Cancel".tr),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -53,7 +54,7 @@ void showDeleteConfirmationDialog({
             onConfirm();
             Navigator.pop(context);
           },
-          child: const Text("Supprimer"),
+          child:Text("Delete".tr),
         ),
       ],
     ),

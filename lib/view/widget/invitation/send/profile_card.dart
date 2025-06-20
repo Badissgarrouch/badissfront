@@ -16,15 +16,25 @@ class SendCardProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: 50,
-          backgroundColor: Colors.blue[50],
-          child: Text(
-            initials,
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue[700],
+        Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(
+              colors: [Colors.blue, Colors.red],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              initials,
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

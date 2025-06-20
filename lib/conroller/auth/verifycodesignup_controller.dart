@@ -28,7 +28,6 @@ class VerifycodeSignupControllerImp extends VerifycodeSignupController {
 
   @override
   CheckCode() {
-    // Implémentation existante
   }
 
   @override
@@ -45,16 +44,16 @@ class VerifycodeSignupControllerImp extends VerifycodeSignupController {
           Get.offNamed(AppRoute.successPage);
         } else {
           Get.defaultDialog(
-            title: "62".tr,
-            middleText: response['message'] ?? "65".tr,
+            title: "❌network error🌐".tr,
+            middleText: response['message'] ?? "Verify code not correct".tr,
           );
           statusRequest = StatusRequest.fail;
         }
       } else {
         if (statusRequest == StatusRequest.offlinefailure) {
           Get.defaultDialog(
-            title: "62".tr,
-            middleText: "63".tr,
+            title: "❌network error🌐".tr,
+            middleText: "Please check your internet connection".tr,
             backgroundColor: Colors.white,
             titleStyle: TextStyle(color: Colors.black),
             middleTextStyle: TextStyle(color: Colors.black),
@@ -63,7 +62,7 @@ class VerifycodeSignupControllerImp extends VerifycodeSignupController {
           );
         } else {
           Get.defaultDialog(
-            title: "60".tr,
+            title: "⚠ Attention".tr,
             middleText: _getErrorMessage(statusRequest),
           );
         }
@@ -84,7 +83,7 @@ class VerifycodeSignupControllerImp extends VerifycodeSignupController {
       case StatusRequest.serverfailure:
         return "error server".tr;
       case StatusRequest.serverexception:
-        return "65".tr;
+        return "Verify code not correct".tr;
       case StatusRequest.fail:
         return "Échec de l'opération".tr;
       default:

@@ -1,9 +1,17 @@
 import 'package:credit_app/view/widget/invitation/respond/detail_row.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class RespondDetailsCard extends StatelessWidget {
-  const RespondDetailsCard({super.key});
+  final String email;
+  final String phone;
+  final String date;
+  const RespondDetailsCard({super.key,
+    required this.email,
+    required this.phone,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +19,7 @@ class RespondDetailsCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Color(0xFFF5FAFF),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -24,22 +32,22 @@ class RespondDetailsCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const DetailRow(
+          DetailRow(
             icon: Icons.email,
-            title: "Email",
-            value: "ahmed.client@email.com",
+            title: "Email".tr,
+            value: email,
           ),
           const Divider(height: 32),
-          const DetailRow(
+           DetailRow(
             icon: Icons.phone,
-            title: "Téléphone",
-            value: "+216 50 123 456",
+            title: "Phone".tr,
+            value: phone,
           ),
           const Divider(height: 32),
-          const DetailRow(
+           DetailRow(
             icon: Icons.calendar_today,
-            title: "Date d'invitation",
-            value: "15 Mars 2023",
+            title: "Invitation date".tr,
+            value: date,
           ),
         ],
       ),
